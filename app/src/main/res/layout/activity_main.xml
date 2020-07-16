@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--Binding static texts-->
+<!--    <data>-->
+<!--        <variable-->
+<!--            name="name"-->
+<!--            type="String" />-->
+<!--        <variable-->
+<!--            name="lastName"-->
+<!--            type="String" />-->
+<!--    </data>-->
+
+
+<!--  Binding view Model  -->
+    <data >
+        <variable
+            name="viewmodel"
+            type="com.test.myapplication.MainActivityViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/plain_name"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@android:color/black"
+            android:text="@{viewmodel.name}"
+            app:hideIfZero="@{viewmodel.liveDataInteger}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/plain_lastname"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="@{viewmodel.lastName}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.619" />
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="@{Integer.toString(viewmodel.liveData)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.234" />
+
+        <Button
+            android:id="@+id/increment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="152dp"
+            android:layout_marginTop="251dp"
+            android:layout_marginEnd="158dp"
+            android:layout_marginBottom="42dp"
+            android:onClick="@{()->viewmodel.increment()}"
+            android:text="increment"
+            app:layout_constraintBottom_toTopOf="@+id/plain_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="202dp"
+            android:layout_height="48dp"
+            app:progressScaled="@{viewmodel.liveDataInteger}"
+            android:max="@{100}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.799" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
